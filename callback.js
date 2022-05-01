@@ -161,3 +161,23 @@ function prioritize(array, callback) {
 // const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
 // console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
 // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
+
+// Challenge 14
+function countBy(array, callback) {
+  const result = {};
+  array.map((number) => {
+    if (!result[callback(number)]) {
+      result[callback(number)] = 0;
+    }
+    result[callback(number)] += 1;
+  });
+
+  return result;
+}
+
+// /*** Uncomment these to check your work! ***/
+// console.log(countBy([1, 2, 3, 4, 5], function(num) {
+// if (num % 2 === 0) return 'even';
+// else return 'odd';
+// }));
+// should log: { odd: 3, even: 2 }
