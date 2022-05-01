@@ -143,3 +143,21 @@ function majority(array, callback) {
 // const isOdd = function(num) { return num % 2 === 1; };
 // console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
 // console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+
+//! Challenge 13
+function prioritize(array, callback) {
+  const matched = [];
+  array.map((word) => {
+    if (callback(word)) {
+      matched.push(word);
+    }
+  });
+  const result = array.filter((word) => !matched.includes(word));
+  matched.reverse().map((word) => result.unshift(word));
+  return result;
+}
+
+// /*** Uncomment these to check your work! ***/
+// const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
+// should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
