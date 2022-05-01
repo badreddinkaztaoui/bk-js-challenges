@@ -297,15 +297,22 @@ const capAddlowRepeat = [capitalize, addLowerCase, repeat];
 
 //! Challenge 21
 function highestFunc(objOfFuncs, subject) {
+  let current = subject;
+  let result;
   for (let func in objOfFuncs) {
+    if (objOfFuncs[func](subject) > current) {
+      current = objOfFuncs[func](subject);
+      result = func;
+    }
   }
+  return result;
 }
 
 // /*** Uncomment these to check your work! ***/
-// const groupOfFuncs = {};
-// groupOfFuncs.double = n => n * 2;
-// groupOfFuncs.addTen = n => n + 10;
-// groupOfFuncs.inverse = n => n * -1;
+const groupOfFuncs = {};
+groupOfFuncs.double = (n) => n * 2;
+groupOfFuncs.addTen = (n) => n + 10;
+groupOfFuncs.inverse = (n) => n * -1;
 // console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
 // console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
 // console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
@@ -355,10 +362,28 @@ function myFunc(array, callback) {
 const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
 
-function isOdd(num) {
-  return num % 2 !== 0;
-}
+// function isOdd(num) { //! Already declared in the top
+//   return num % 2 !== 0;
+// }
 
 // /*** Uncomment these to check your work! ***/
 // console.log(myFunc(numbers, isOdd)); // Output should be 1
 // console.log(myFunc(evens, isOdd)); // Output should be -1
+
+//! Challenge 24
+function myForEach(array, callback) {
+  for (let i = 0; i < array.length; i++) {
+    callback(array[i], i, array);
+  }
+}
+
+let sum = 0;
+
+function addToSum(num) {
+  sum += num;
+}
+
+// /*** Uncomment these to check your work! ***/
+const nums = [1, 2, 3];
+myForEach(nums, addToSum);
+// console.log(sum); // Should output 6
