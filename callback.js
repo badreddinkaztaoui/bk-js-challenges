@@ -162,7 +162,7 @@ function prioritize(array, callback) {
 // console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
 // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
 
-// Challenge 14
+//! Challenge 14
 function countBy(array, callback) {
   const result = {};
   array.map((number) => {
@@ -181,3 +181,21 @@ function countBy(array, callback) {
 // else return 'odd';
 // }));
 // should log: { odd: 3, even: 2 }
+
+//! Challenge 15
+function groupBy(array, callback) {
+  const result = {};
+  array.map((number) => {
+    if (!result[callback(number)]) {
+      result[callback(number)] = [number];
+    } else {
+      result[callback(number)] = [...result[callback(number)], number];
+    }
+  });
+  return result;
+}
+
+// /*** Uncomment these to check your work! ***/
+// const decimals = [1.3, 2.1, 2.4];
+// const floored = function(num) { return Math.floor(num); };
+// console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
