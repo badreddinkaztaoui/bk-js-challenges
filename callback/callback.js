@@ -199,3 +199,49 @@ function groupBy(array, callback) {
 // const decimals = [1.3, 2.1, 2.4];
 // const floored = function(num) { return Math.floor(num); };
 // console.log(groupBy(decimals, floored)); // should log: { 1: [1.3], 2: [2.1, 2.4] }
+
+//! Challenge 16
+function goodKeys(obj, callback) {
+  const result = [];
+  for (let key in obj) {
+    if (callback(obj[key])) {
+      result.push(key);
+    }
+  }
+  return result;
+}
+
+// /*** Uncomment these to check your work! ***/
+// const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
+// const startsWithBird = function(str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
+// console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
+
+//! Challenge 17
+function commutative(func1, func2, value) {
+  return func2(func1(value)) === func1(func2(value));
+}
+
+// /*** Uncomment these to check your work! ***/
+const multBy3 = (n) => n * 3;
+const divBy4 = (n) => n / 4;
+const subtract5 = (n) => n - 5;
+// console.log(commutative(multBy3, divBy4, 11)); // should log: true
+// console.log(commutative(multBy3, subtract5, 10)); // should log: false
+// console.log(commutative(divBy4, subtract5, 48)); // should log: false
+
+//! Challenge 18
+function objFilter(obj, callback) {
+  const result = {};
+  for (let key in obj) {
+    if (callback(key) === obj[key]) result[key] = obj[key];
+  }
+  return result;
+}
+
+// /*** Uncomment these to check your work! ***/
+const startingObj = {};
+startingObj[6] = 3;
+startingObj[2] = 1;
+startingObj[12] = 4;
+const half = (n) => n / 2;
+// console.log(objFilter(startingObj, half)); // should log: { 2: 1, 6: 3 }
