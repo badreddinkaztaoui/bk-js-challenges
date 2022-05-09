@@ -39,9 +39,7 @@ function forEach(array, callback) {
 //! Challenge 5
 function mapWith(array, callback) {
   const result = [];
-  array.forEach((num) => {
-    result.push(callback(num));
-  });
+  forEach(array, (num) => result.push(callback(num)));
   return result;
 }
 
@@ -62,7 +60,9 @@ function reduce(array, callback, initialValue) {
 function intersection(arrays) {
   return arrays
     .shift()
-    .filter((number) => arrays.every((array) => array.indexOf(number) !== -1));
+    .filter((number) => arrays.every((array) => array.includes(number)));
+  //TODO Using reduce
+  // return arrays.reduce((acc, curr) => acc.filter((el) => curr.includes(el)));
 }
 
 // console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
